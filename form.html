@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration form
+    </title>
+    <link rel="stylesheet" type="text/css" href="form.css">
+
+    <script>
+        function validate() {
+            debugger
+            var first = document.getElementById("fname").value;
+            var last = document.getElementById("lname").value;
+            var contact = document.getElementById("Contact").value;
+            var email = document.getElementById("Email").value;
+            var state = document.getElementById("states").value;
+            var date = document.getElementById("DOB").value;
+            var Gender;
+
+
+            if (first == "") {
+                alert("first name is required.");
+            } if (last == "") {
+
+                alert("last name is required.");
+            } if (contact == "") {
+                alert("contact is required.");
+            } else if (contact.length < 10) {
+                alert("maximum 10 digits.");
+
+            } else if (contact.length > 10) {
+                alert("minimum 10 digits.");
+            }
+            if (email == "") {
+                alert("email is required");
+            }
+            if (Gender == "") {
+                alert("gender is required.");
+            }
+            if (document.getElementById("male").checked) {
+                Gender = document.getElementById("male").value;
+            } else if (document.getElementById("female").checked) {
+                Gender = document.getElementById("female").value;
+            } else {
+                alert("Gender is required");
+
+            }
+            if (state == "") {
+                alert("state is required.");
+            }
+            var sel = document.getElementById("states");
+            var selectedText = sel.options[sel.selectedIndex].value;
+            if (date == "") {
+                alert("date is required.");
+            }
+            var display = document.getElementById("message").innerHTML = first + " " + last + " " + contact + " " +
+                email + " " + Gender + " " + state + " " + date;
+            var image = document.getElementById("output").innerHTML;
+        }
+
+        var loadFile = function (event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+        if (image == "") {
+            alert("image is required");
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Registration Form</h1>
+    <form>
+
+        <label for="fname">First Name</label><br><br>
+        <input type="text" name="fname" placeholder="First Name " id="fname" onkeypress="return ( event.charCode>64 && event.charCode <91)||
+             (event.charCode>96 && event.charCode<123)">
+        <br><br>
+        <label for="lname">Last Name</label><br><br>
+        <input type="text" name="lname" placeholder="Last Name" id="lname" onkeypress="return ( event.charCode>64 && event.charCode <91)||
+             (event.charCode>96 && event.charCode<123)"><br><br>
+        <label for="Contact No.">Contact No.</label><br><br>
+        <input type="text" name="Contact" placeholder="Contact No." id="Contact"
+            onkeypress="return ( event.charCode>=48 && event.charCode<=57)"><br><br>
+
+        <label for="Email">Email </label><br><br>
+
+        <input type="email" name="Email" placeholder="Email" id="Email" onblur="email(this)"><br><br>
+        <label>Gender</label><br><br>
+        <label for="male">Male</label>
+        <input type="radio" name="male" id="male" value="male">
+        <label for="female">Female</label>
+        <input type="radio" name="male" id="female" value="female"><br><br>
+
+        <label for="State">State</label><br><br>
+        <select id="states"><br>
+
+            <option>select</option>
+            <option>DELHI</option>
+            <option>Uttarperdesh</option>
+            <option>PUNJAB</option>
+            <option>Uttarakhand</option>
+        </select><br>
+
+        <label for="file">image </label><br><br>
+        <input type="file" name="file" id="file" accept="image/*" onchange="loadFile(event)"><br><br>
+        <label for="DOB">DOB</lable>
+
+            <input type="date" name="DOB" placeholder="DOB" id="DOB">
+            <br><br>
+
+            <input type="button" onclick="validate()" value="Submit">
+            <input type="Reset" name="Reset">
+
+    </form>
+    <div class="image"></div>
+       <img id="output" width="200" />	
+
+
+
+    </div>
+    <div id="message">
+
+    </div>
+
+
+</body>
+
+</html>
